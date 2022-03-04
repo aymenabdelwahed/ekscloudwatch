@@ -81,9 +81,11 @@ func New(k8sAuditURI string, clusterNameOverride string, awsRegionOverride strin
 		instance := diOut.Reservations[0].Instances[0]
 
 		tags := instance.Tags
+		log.Printf("##Debut> tags := instance.Tags:")
 		for _, tag := range tags {
 			if *tag.Key == "eksctl.cluster.k8s.io/v1alpha1/cluster-name" || *tag.Key == "alpha.eksctl.io/cluster-name" {
 				clusterName = *tag.Value
+				log.Printf("%s", clusterName)
 			}
 		}
 
